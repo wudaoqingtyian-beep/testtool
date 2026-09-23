@@ -1,0 +1,13 @@
+# 订单模板（示例）：演示依赖造数
+# depends_on: user → 引擎保证 user 先生成，${ref(user.id)} 回填外键
+model: orders
+count: 200
+output: file            # database / file
+file_format: json
+depends_on: user        # 依赖声明：先造用户
+fields:
+  order_no: "${uuid}"
+  user_id: "${ref(user.id)}"            # 外键回填：随机引用已生成用户的 id
+  amount: "${decimal(0.01, 9999.99)}"
+  status: "${enum(created, paid, shipped, refunded)}"
+  created_at: "${datetime_recent(30d)}"

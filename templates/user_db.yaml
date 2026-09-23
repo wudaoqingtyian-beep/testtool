@@ -1,0 +1,15 @@
+# 用户模板（数据库输出版）：造 100 条用户写入 test_factory.user 表
+model: user
+count: 100
+output: database
+fields:
+  id: "${uuid}"
+  username: "auto_${random_str(8)}"
+  phone: "${phone}"
+  email: "${email}"
+  real_name: "${name}"
+  age: "${int(18, 60)}"
+  balance: "${decimal(0.01, 9999.99)}"
+  id_card: "${idcard}"
+  address: "${address}"
+  created_at: "${datetime_recent(30d)}"

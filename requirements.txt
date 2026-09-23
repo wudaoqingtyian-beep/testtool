@@ -1,0 +1,11 @@
+# Core dependencies
+PyYAML>=6.0          # YAML template parsing
+Faker>=24.0          # Localized fake data (CN names/phones)
+PyMySQL>=1.1         # MySQL driver
+SQLAlchemy>=2.0      # Database connection management
+rich>=13.0           # Console output
+fastapi>=0.110       # Service layer (server.py, for project2 integration)
+uvicorn>=0.29        # ASGI server to run the FastAPI app
+
+# Dev / test dependencies
+pytest>=8.0          # Unit tests for this tool itself

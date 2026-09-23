@@ -1,0 +1,11 @@
+# 依赖造数（数据库输出版）：订单表外键引用 user 表
+model: orders
+count: 200
+output: database
+depends_on: user
+fields:
+  order_no: "${uuid}"
+  user_id: "${ref(user.id)}"
+  amount: "${decimal(0.01, 9999.99)}"
+  status: "${enum(created, paid, shipped, refunded)}"
+  created_at: "${datetime_recent(30d)}"

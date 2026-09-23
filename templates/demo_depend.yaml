@@ -1,0 +1,22 @@
+# 依赖造数演示模板：一个文件两个模型，用 --- 分隔
+# user 先生成（无依赖），orders 后生成并回填 user_id 外键
+model: user
+count: 10
+output: file
+file_format: csv
+fields:
+  id: "${uuid}"
+  username: "auto_${random_str(8)}"
+  phone: "${phone}"
+  age: "${int(18, 60)}"
+---
+model: orders
+count: 20
+output: file
+file_format: csv
+depends_on: user
+fields:
+  order_no: "${uuid}"
+  user_id: "${ref(user.id)}"
+  amount: "${decimal(0.01, 999.99)}"
+  status: "${enum(created, paid, shipped, refunded)}"

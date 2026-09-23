@@ -1,0 +1,18 @@
+# 用户模板（示例）：一次造 100 条用户
+# output: database → 写入 user 表（需在 config.yaml 配好数据库）
+# 想先无数据库体验，可把 output 改为 file，数据会导出到 exports/ 目录
+model: user
+count: 100
+output: file            # database / file（示例先用 file，方便不配数据库直接跑通）
+file_format: csv        # file 输出格式：csv / json
+fields:
+  id: "${uuid}"                         # 唯一标识（供订单模板 ${ref(user.id)} 引用）
+  username: "auto_${random_str(8)}"     # 前缀 + 随机串，避免重名
+  phone: "${phone}"                     # 合法号段手机号
+  email: "${email}"
+  real_name: "${name}"                  # 中文姓名
+  age: "${int(18, 60)}"
+  balance: "${decimal(0.01, 9999.99)}"
+  id_card: "${idcard}"                  # 校验位合法的身份证
+  address: "${address}"
+  created_at: "${datetime_recent(30d)}"

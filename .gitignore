@@ -1,0 +1,23 @@
+# 真实环境配置（含密码），不提交到版本库
+config.yaml
+
+# 本机验证脚本（含数据库密码），不提交
+verify_db.py
+
+# Python 缓存与虚拟环境
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# 造数快照文件（历史批次记录，一般不需要提交）
+snapshots/
+
+# 导出的测试数据文件
+exports/
+
+# pytest 缓存
+.pytest_cache/
+
+# 本地学习/管理文档，不入仓库
+docs/

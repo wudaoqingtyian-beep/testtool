@@ -1,0 +1,18 @@
+# ============ 数据工厂环境配置示例 ============
+# 复制本文件为 config.yaml 后填写真实信息
+# config.yaml 已加入 .gitignore，严禁提交真实密码
+
+# 数据库连接配置（用于 database 注入方式）
+database:
+  # SQLAlchemy 连接串，格式: mysql+pymysql://用户名:密码@主机:端口/库名?charset=utf8mb4
+  url: "mysql+pymysql://root:your_password@localhost:3306/test_factory?charset=utf8mb4"
+  # 单批插入条数（分批写库，避免一次性插入过大）
+  batch_size: 100
+
+# 测试数据标记字段名（造出的数据都会带这个字段，值统一为下方 tag 值，便于清理）
+marker:
+  field: "env_tag"
+  value: "TEST_DATA"
+
+# 快照文件存放目录（创新4：数据集快照）
+snapshot_dir: "snapshots"

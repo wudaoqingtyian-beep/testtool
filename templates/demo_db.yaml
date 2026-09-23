@@ -1,0 +1,20 @@
+# 数据库全链路演示：user 表 + orders 表（依赖回填）一次跑通
+model: user
+count: 100
+output: database
+fields:
+  id: "${uuid}"
+  username: "auto_${random_str(8)}"
+  phone: "${phone}"
+  age: "${int(18, 60)}"
+  created_at: "${datetime_recent(30d)}"
+---
+model: orders
+count: 200
+output: database
+depends_on: user
+fields:
+  order_no: "${uuid}"
+  user_id: "${ref(user.id)}"
+  amount: "${decimal(0.01, 999.99)}"
+  status: "${enum(created, paid, shipped, refunded)}"
